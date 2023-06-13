@@ -6,17 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="260dp"
+        android:layout_height="432dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="74dp"
+        android:layout_marginBottom="147dp"
+        app:srcCompat="@drawable/baymax" />
+
     <Button
         android:id="@+id/signin"
-        android:layout_width="wrap_content"
+        android:layout_width="192dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="119dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="109dp"
+        android:layout_marginBottom="99dp"
         android:text="Sign In with Google"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="61dp"
+        android:fontFamily="@font/poppins_extrabold"
+        android:text="Baymax"
+        android:textSize="50dp" />
+
+    <TextView
+        android:id="@+id/subTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="140dp"
+        android:fontFamily="@font/poppins_extrabold"
+        android:text="Your AI health companion"
+        android:textSize="20sp" />
 
 </RelativeLayout>

@@ -12,12 +12,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Material3.Dark"
+        android:theme="@style/Theme.Material3.Dark.NoActionBar"
+
         tools:targetApi="31">
         <activity
             android:name=".HomeActivity"
             android:exported="false"
-            android:label="@string/title_activity_home" />
+            android:label="@string/title_activity_chat" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -27,6 +28,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(requestCode==100){
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            HomeActivity();
+            ChatActivity();
             try {
                 task.getResult(ApiException.class);
             } catch (ApiException e){
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void HomeActivity() {
+    private void ChatActivity() {
         finish();
         Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
         startActivity(intent);
