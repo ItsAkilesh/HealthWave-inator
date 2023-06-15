@@ -5,6 +5,5 @@
 
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
-
     <style name="Theme.BaymaxAI" parent="Base.Theme.BaymaxAI" />
 </resources>

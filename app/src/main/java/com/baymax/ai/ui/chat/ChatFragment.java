@@ -51,7 +51,7 @@ public class ChatFragment extends Fragment {
         send = (Button) root.findViewById(R.id.send);
 
         send.setOnClickListener(new View.OnClickListener() {
-            private static final String FLASK_ENDPOINT = "http:/192.168.62.168:5000/askgpt";
+            private static final String FLASK_ENDPOINT = "http:/192.168.1.100:5000/askgpt";
             @Override
             public void onClick(View v) {
                 if (input!=null) {
