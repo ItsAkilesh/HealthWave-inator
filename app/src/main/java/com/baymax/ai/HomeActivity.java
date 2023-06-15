@@ -1,6 +1,7 @@
 package com.baymax.ai;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,11 @@ public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding binding;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
+    public String displayName, displayEmail,dob;
+    public Boolean gender;
+    public Uri displayPhoto;
+    public int age;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +54,17 @@ public class HomeActivity extends AppCompatActivity {
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(HomeActivity.this,gso);
-
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(HomeActivity.this);
-
-
+        if(account!=null){
+            displayName= account.getDisplayName();
+            displayEmail= account.getEmail();
+            displayPhoto=account.getPhotoUrl();
+            dob=account.getGrantedScopes().contains("https://www.googleapis.com/auth/user.birthday.read") ? account.getDisplayName() : null;
+            gender = account.getGrantedScopes().contains("https://www.googleapis.com/auth/user.gender.read") ? account.getGrantedScopes().contains("https://www.googleapis.com/auth/user.birthday.read") : null;
+            
     }
 
+    }
     public void SignOut() {
         gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

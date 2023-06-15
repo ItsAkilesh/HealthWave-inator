@@ -7,16 +7,54 @@
     tools:context=".ui.chat.ChatFragment">
 
     <TextView
-        android:id="@+id/text_chat"
-        android:layout_width="match_parent"
+        android:id="@+id/user_input"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="66dp"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingRight="15dp"
+        android:text=""
+        android:textAlignment="textEnd"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/gpt_out"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="416dp"
+        android:fontFamily="@font/poppins"
+        android:padding="15dp"
+        android:text=""
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/input"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/input"
+        style="@style/Base.CardView"
+        android:layout_width="317dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="71dp"
+        android:ems="10"
+        android:fontFamily="@font/poppins"
+        android:hint="Type a message..."
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/send"
+        android:layout_width="94dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="71dp"
+        android:text="✈"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
