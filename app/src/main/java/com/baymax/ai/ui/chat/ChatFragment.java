@@ -28,8 +28,6 @@ import java.net.URL;
 public class ChatFragment extends Fragment {
 
     private FragmentChatBinding binding;
-    private static final String API_URL = "https://api.openai.com/v1/engines/davinci-codex/completions";
-    private static final String API_KEY = "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";
     public TextView user_input,gpt_out;
     public EditText input;
     public Button send;
@@ -51,7 +49,7 @@ public class ChatFragment extends Fragment {
         send = (Button) root.findViewById(R.id.send);
 
         send.setOnClickListener(new View.OnClickListener() {
-            private static final String FLASK_ENDPOINT = "http:/192.168.1.100:5000/askgpt";
+            private static final String FLASK_ENDPOINT = "http://192.168.1.100:5000/askgpt";
             @Override
             public void onClick(View v) {
                 if (input!=null) {
