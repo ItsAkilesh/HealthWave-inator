@@ -1,59 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/idRLContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.chat.ChatFragment">
+    android:orientation="vertical"
+    tools:context=".ui.chat.ChatFragment"
+    >
 
-    <TextView
-        android:id="@+id/user_input"
-        android:layout_width="411dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="97dp"
-        android:fontFamily="@font/poppins_medium"
-        android:paddingRight="15dp"
-        android:text=""
-        android:textAlignment="textEnd"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/gpt_out"
-        android:layout_width="411dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/poppins"
-        android:padding="15dp"
-        android:text=""
-        android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_input" />
-
-    <EditText
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/input"
+        />
+     <EditText
         android:id="@+id/input"
-        style="@style/Base.CardView"
-        android:layout_width="317dp"
-        android:layout_height="56dp"
-        android:ems="10"
-        android:fontFamily="@font/poppins"
-        android:hint="Type a message..."
-        android:imeOptions="actionDone"
-        android:inputType="text"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:layout_toStartOf="@id/send"
+        android:hint="Type message... "
+
+         />
 
     <Button
         android:id="@+id/send"
-        android:layout_width="95dp"
-        android:layout_height="61dp"
-        android:layout_marginEnd="1dp"
-        android:text="✈"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="4dp"
+        android:text="Send"
+        android:textAllCaps="false" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</RelativeLayout>
