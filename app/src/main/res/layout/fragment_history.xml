@@ -7,13 +7,28 @@
     tools:context=".ui.history.HistoryFragment">
 
       <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:fastScrollEnabled="true"
-        android:layout_marginStart="0dp"
-    />
+          android:id="@+id/list"
+          android:layout_width="407dp"
+          android:layout_height="831dp"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginTop="84dp"
+          android:fastScrollEnabled="true"
+          app:layout_constraintTop_toTopOf="parent" >
+
+      </ListView>
+
+      <TextView
+          android:id="@+id/textView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="41dp"
+          android:fontFamily="@font/poppins_medium"
+          android:text="Chat History"
+          android:textSize="20dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.498"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

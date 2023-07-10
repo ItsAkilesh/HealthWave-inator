@@ -23,7 +23,7 @@ public class AccountFragment extends Fragment {
 
     Button logout;
     TextView text_account;
-    TextView dob;
+    TextView email;
     ImageView displayPicture;
 
     private FragmentAccountBinding binding;
@@ -37,7 +37,7 @@ public class AccountFragment extends Fragment {
         View root = binding.getRoot();
         HomeActivity home = (HomeActivity) getActivity();
         text_account = (TextView) root.findViewById(R.id.text_account);
-        dob = (TextView) root.findViewById(R.id.dob);
+        email = (TextView) root.findViewById(R.id.email);
         logout = (Button) root.findViewById(R.id.logout);
         displayPicture = (ImageView) root.findViewById(R.id.displayPicture);
         logout.setBackgroundColor(getResources().getColor(R.color.danger));
@@ -53,8 +53,10 @@ public class AccountFragment extends Fragment {
         });
 
 
-        text_account.setText(home.displayName );
-        dob.setText(home.dob);
+        text_account.setText(home.displayName);
+        email.append(home.displayEmail);
+
+
         Glide.with(this)
              .load(home.displayPhoto)
              .placeholder(R.drawable

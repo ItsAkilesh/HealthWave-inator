@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.baymax.ai.HomeActivity;
 import com.baymax.ai.R;
@@ -37,10 +38,10 @@ import java.util.stream.Collectors;
 
 public class ChatFragment extends Fragment {
 
-    private static final String FLASK_ENDPOINT = "http://192.168.0.116:5000/askgpt";
+    private static final String FLASK_ENDPOINT = "http://192.168.0.130:5000/askgpt";
     private FragmentChatBinding binding;
      public EditText input;
-    public Button send;
+    public Button send,newChat;
     public ListView list;
     public ArrayList<String> history;
 
@@ -69,6 +70,7 @@ public class ChatFragment extends Fragment {
 
         input = root.findViewById(R.id.input);
         send = root.findViewById(R.id.send);
+        newChat = root.findViewById(R.id.newChat);
         list = root.findViewById(R.id.list);
 
         Map<String, Object> historyChat = new HashMap<>();
@@ -85,7 +87,16 @@ public class ChatFragment extends Fragment {
          if(bundle != null )
             docId = bundle.getString("docId", null);
 
+        newChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                docId = null;
+                NavHostFragment.findNavController(ChatFragment.this)
+                        .navigate(R.id.action_navigation_chat_self, bundle);
 
+            }
+        });
 
         if(docId != null){
             db.collection(displayEmail)

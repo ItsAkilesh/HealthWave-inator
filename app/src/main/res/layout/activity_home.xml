@@ -22,8 +22,8 @@
     <fragment
         android:id="@+id/nav_host_fragment_activity_chat"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="408dp"
-        android:layout_height="738dp"
+        android:layout_width="406dp"
+        android:layout_height="781dp"
 
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"

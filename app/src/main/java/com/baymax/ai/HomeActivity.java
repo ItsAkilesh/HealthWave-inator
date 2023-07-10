@@ -54,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
 
 
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().requestProfile().build();
         gsc = GoogleSignIn.getClient(HomeActivity.this,gso);
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(HomeActivity.this);
         if(account!=null){
@@ -62,6 +62,7 @@ public class HomeActivity extends AppCompatActivity {
             displayEmail= account.getEmail();
             displayPhoto=account.getPhotoUrl();
             dob=account.getGrantedScopes().contains("https://www.googleapis.com/auth/user.birthday.read") ? account.getDisplayName() : null;
+            //Toast.makeText(this, dob, Toast.LENGTH_SHORT).show();
             gender = account.getGrantedScopes().contains("https://www.googleapis.com/auth/user.gender.read") ? account.getGrantedScopes().contains("https://www.googleapis.com/auth/user.birthday.read") : null;
     }
 
