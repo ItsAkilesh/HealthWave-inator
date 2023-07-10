@@ -16,8 +16,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.baymax.ai.HomeActivity;
 import com.baymax.ai.R;
 import com.baymax.ai.databinding.FragmentChatBinding;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -25,14 +30,32 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.stream.Collectors;
 
 public class ChatFragment extends Fragment {
 
+    private static final String FLASK_ENDPOINT = "http://192.168.0.116:5000/askgpt";
     private FragmentChatBinding binding;
      public EditText input;
     public Button send;
     public ListView list;
     public ArrayList<String> history;
+
+    public String docId;
+
+    public HomeActivity home;
+
+    public Callable<String> createOrUpdateHistory;
+
+    public FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    public ArrayAdapter<String> adapter;
+
+    public String displayEmail;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -42,24 +65,69 @@ public class ChatFragment extends Fragment {
 
         binding = FragmentChatBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        home = (HomeActivity) getActivity();
 
         input = root.findViewById(R.id.input);
         send = root.findViewById(R.id.send);
         list = root.findViewById(R.id.list);
+
+        Map<String, Object> historyChat = new HashMap<>();
         history = new ArrayList<>();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, history);
+        historyChat.put("history", history);
+
+        adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, history);
         list.setAdapter(adapter);
 
 
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
+        displayEmail= account.getEmail();
+         Bundle bundle = getArguments();
+         if(bundle != null )
+            docId = bundle.getString("docId", null);
+
+
+
+        if(docId != null){
+            db.collection(displayEmail)
+                    .document(docId)
+                    .get()
+                    .addOnCompleteListener((task) ->{
+                        DocumentSnapshot document = task.getResult();
+                        if(document.exists()){
+                           Map<String, Object> hash = document.getData();
+                           history.clear();
+                           history.addAll(( ArrayList<String>) hash.get("history"));
+                            adapter.notifyDataSetChanged();
+                            Toast.makeText(home, history.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(home, "No such chat found!", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+            ;
+        }
+
+        createOrUpdateHistory = (Callable<String>) () -> {
+            db.collection(displayEmail)
+                    .document(docId)
+                    .set(historyChat)
+                    .addOnSuccessListener((documentReference)->
+                            Toast.makeText(getContext(), "Added to DB successfully", Toast.LENGTH_SHORT).show()
+                    ).addOnFailureListener(e ->
+                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show()
+                    );
+            return "Works";
+        };
+
+
         send.setOnClickListener(new View.OnClickListener() {
-            private static final String FLASK_ENDPOINT = "http://192.168.1.100:5000/askgpt";
             @Override
             public void onClick(View v) {
                 if (input!=null) {
                     String query =  input.getText().toString();
-                    String prompt = String.join("\n", history)  + query;
+                    String prompt = history.stream().map(i -> i.substring(6)).collect(Collectors.joining("\n")) + query;
                     String gen_message;
-                    history.add(query);
+                    history.add("You:    " + query);
                     adapter.notifyDataSetChanged();
                     InputMethodManager inputManager = (InputMethodManager) root.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                     inputManager.hideSoftInputFromWindow(root.getWindowToken(), 0);
@@ -102,8 +170,27 @@ public class ChatFragment extends Fragment {
 
                     }
 
-                   history.add(gen_message);
-                    adapter.notifyDataSetChanged();
+                   history.add("BayMax: " + gen_message);
+                   adapter.notifyDataSetChanged();
+                    if( docId == null){
+                        db.collection(displayEmail)
+                                .add(historyChat)
+                                .addOnSuccessListener(documentReference ->{
+                                    try {
+                                        createOrUpdateHistory.call();
+                                    } catch (Exception e) {
+                                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                    docId= documentReference.getId();
+                                }).addOnFailureListener(e ->
+                                        Toast.makeText(home, e.getMessage(), Toast.LENGTH_SHORT).show()
+                                );
+                    }
+                    try {
+                        createOrUpdateHistory.call();
+                    } catch (Exception e) {
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
 
                 }
                 else

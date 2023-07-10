@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -41,10 +40,8 @@ public class HomeActivity extends AppCompatActivity {
 
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        if (Build.VERSION.SDK_INT >= 21) {
-            setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
-        }
+        setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -66,7 +63,6 @@ public class HomeActivity extends AppCompatActivity {
             displayPhoto=account.getPhotoUrl();
             dob=account.getGrantedScopes().contains("https://www.googleapis.com/auth/user.birthday.read") ? account.getDisplayName() : null;
             gender = account.getGrantedScopes().contains("https://www.googleapis.com/auth/user.gender.read") ? account.getGrantedScopes().contains("https://www.googleapis.com/auth/user.birthday.read") : null;
-            
     }
 
     }

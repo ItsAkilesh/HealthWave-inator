@@ -23,6 +23,7 @@ public class AccountFragment extends Fragment {
 
     Button logout;
     TextView text_account;
+    TextView dob;
     ImageView displayPicture;
 
     private FragmentAccountBinding binding;
@@ -36,25 +37,24 @@ public class AccountFragment extends Fragment {
         View root = binding.getRoot();
         HomeActivity home = (HomeActivity) getActivity();
         text_account = (TextView) root.findViewById(R.id.text_account);
+        dob = (TextView) root.findViewById(R.id.dob);
         logout = (Button) root.findViewById(R.id.logout);
         displayPicture = (ImageView) root.findViewById(R.id.displayPicture);
         logout.setBackgroundColor(getResources().getColor(R.color.danger));
         logout.setTextColor(getResources().getColor(R.color.white));
 
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) throws NullPointerException{
-                try{
-                    home.SignOut();
+        logout.setOnClickListener(v -> {
+            try{
+                home.SignOut();
 
-                }catch( Exception e ){
-                    Toast.makeText(getContext() ,e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
+            }catch( Exception e ){
+                Toast.makeText(getContext() ,e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
 
         text_account.setText(home.displayName );
+        dob.setText(home.dob);
         Glide.with(this)
              .load(home.displayPhoto)
              .placeholder(R.drawable
