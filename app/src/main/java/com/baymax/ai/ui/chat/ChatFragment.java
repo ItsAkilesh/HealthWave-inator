@@ -24,7 +24,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
+import org.apache.commons.text.StringEscapeUtils;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
 
 public class ChatFragment extends Fragment {
 
-    private static final String FLASK_ENDPOINT = "http://192.168.0.130:5000/askgpt";
+    private static final String FLASK_ENDPOINT = "http://192.168.92.168:5000/askgpt";
     private FragmentChatBinding binding;
      public EditText input;
     public Button send,newChat;
@@ -170,6 +170,7 @@ public class ChatFragment extends Fragment {
 
                             // Extract the generated message from the JSON response
                             gen_message = response.substring(12, (response.length()-2));
+                            gen_message = StringEscapeUtils.unescapeJava(gen_message);
                         } else {
                             gen_message = "API request failed with response code: " + responseCode;
                         }
@@ -190,17 +191,17 @@ public class ChatFragment extends Fragment {
                                     try {
                                         createOrUpdateHistory.call();
                                     } catch (Exception e) {
-                                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT);
                                     }
                                     docId= documentReference.getId();
                                 }).addOnFailureListener(e ->
-                                        Toast.makeText(home, e.getMessage(), Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(home, e.getMessage(), Toast.LENGTH_SHORT)
                                 );
                     }
                     try {
                         createOrUpdateHistory.call();
                     } catch (Exception e) {
-                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT);
                     }
 
                 }
