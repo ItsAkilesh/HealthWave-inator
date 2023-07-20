@@ -3,5 +3,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="danger">#780A0A</color>
-    <color name="glass">#323B3044</color>
+    <color name="glass">#00000000</color>
 </resources>

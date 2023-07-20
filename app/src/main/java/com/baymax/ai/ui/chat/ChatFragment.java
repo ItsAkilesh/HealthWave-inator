@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
 
 public class ChatFragment extends Fragment {
 
-    private static final String FLASK_ENDPOINT = "http://192.168.92.168:5000/askgpt";
+    private static final String FLASK_ENDPOINT = "http://18.212.219.68:5000/askgpt";
     private FragmentChatBinding binding;
      public EditText input;
     public Button send,newChat;
@@ -151,7 +151,7 @@ public class ChatFragment extends Fragment {
                         connection.setDoOutput(true);
 
                         // Construct the request body
-                        String requestBody = "Message=" + prompt;
+                        String requestBody = "Message=" + prompt + "Decline to answer if question is not medically relevant.";
 
                         OutputStream outputStream = connection.getOutputStream();
                         outputStream.write(requestBody.getBytes());

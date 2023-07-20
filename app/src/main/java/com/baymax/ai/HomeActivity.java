@@ -60,7 +60,7 @@ public class HomeActivity extends AppCompatActivity {
         if(account!=null){
             displayName= account.getDisplayName();
             displayEmail= account.getEmail();
-            displayPhoto=account.getPhotoUrl();
+            displayPhoto=account.getPhotoUrl();;
             dob=account.getGrantedScopes().contains("https://www.googleapis.com/auth/user.birthday.read") ? account.getDisplayName() : null;
             //Toast.makeText(this, dob, Toast.LENGTH_SHORT).show();
             gender = account.getGrantedScopes().contains("https://www.googleapis.com/auth/user.gender.read") ? account.getGrantedScopes().contains("https://www.googleapis.com/auth/user.birthday.read") : null;
