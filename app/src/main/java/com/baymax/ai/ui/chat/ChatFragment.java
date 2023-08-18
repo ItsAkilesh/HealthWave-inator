@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
 
 public class ChatFragment extends Fragment {
 
-    private static final String FLASK_ENDPOINT = "http://18.212.219.68:5000/askgpt";
+    private static final String FLASK_ENDPOINT = "http://192.168.0.110:5000/askgpt";
     private FragmentChatBinding binding;
      public EditText input;
     public Button send,newChat;
