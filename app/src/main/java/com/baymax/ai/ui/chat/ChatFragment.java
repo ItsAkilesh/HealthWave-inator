@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
 
 public class ChatFragment extends Fragment {
 
-    private static final String FLASK_ENDPOINT = "http://192.168.0.110:5000/askgpt";
+    private static final String FLASK_ENDPOINT = "http://54.198.40.23:5000/askgpt";
     private FragmentChatBinding binding;
      public EditText input;
     public Button send,newChat;
@@ -182,7 +182,7 @@ public class ChatFragment extends Fragment {
 
                     }
 
-                   history.add("BayMax: " + gen_message);
+                   history.add("HealthWave: " + gen_message);
                    adapter.notifyDataSetChanged();
                     if( docId == null){
                         db.collection(displayEmail)

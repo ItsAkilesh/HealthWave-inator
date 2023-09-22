@@ -56,7 +56,7 @@
         android:layout_marginTop="61dp"
         android:fontFamily="@font/poppins_extrabold"
         android:gravity="center"
-        android:text="Baymax"
+        android:text="HealthWave"
         android:textSize="50dp" />
 
     <TextView
