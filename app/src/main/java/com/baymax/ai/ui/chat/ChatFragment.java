@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.bumptech.glide.Glide;
 import com.baymax.ai.HomeActivity;
 import com.baymax.ai.R;
 import com.baymax.ai.databinding.FragmentChatBinding;
@@ -38,11 +39,12 @@ import java.util.stream.Collectors;
 
 public class ChatFragment extends Fragment {
 
-    private static final String FLASK_ENDPOINT = "http://54.198.40.23:5000/askgpt";
+    private static final String FLASK_ENDPOINT = "http://192.168.29.100:5000/askgpt";
     private FragmentChatBinding binding;
      public EditText input;
     public Button send,newChat;
     public ListView list;
+    public Button imageChat;
     public ArrayList<String> history;
 
     public String docId;
@@ -72,6 +74,7 @@ public class ChatFragment extends Fragment {
         send = root.findViewById(R.id.send);
         newChat = root.findViewById(R.id.newChat);
         list = root.findViewById(R.id.list);
+        imageChat = root.findViewById(R.id.imageChat);
 
         Map<String, Object> historyChat = new HashMap<>();
         history = new ArrayList<>();
@@ -94,6 +97,13 @@ public class ChatFragment extends Fragment {
                 docId = null;
                 NavHostFragment.findNavController(ChatFragment.this)
                         .navigate(R.id.action_navigation_chat_self, bundle);
+
+            }
+        });
+
+        imageChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
             }
         });
@@ -169,7 +179,7 @@ public class ChatFragment extends Fragment {
                             reader.close();
 
                             // Extract the generated message from the JSON response
-                            gen_message = response.substring(12, (response.length()-2));
+                            gen_message = response.substring(15, (response.length()-2));
                             gen_message = StringEscapeUtils.unescapeJava(gen_message);
                         } else {
                             gen_message = "API request failed with response code: " + responseCode;
