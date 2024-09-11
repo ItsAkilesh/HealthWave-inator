@@ -52,7 +52,7 @@ public class AccountFragment extends Fragment {
             public void onClick(View v) {
                 MaterialAlertDialogBuilder alert = new MaterialAlertDialogBuilder(getContext());
                 alert.setTitle("Policies and Licenses");
-                alert.setMessage("This app was created purely for educational and research purposes and not intended for any other use. This app was built with ♥ in Android Studio, Flask, Firestore and OpenAI GPT 3.5 by Akilesh S (akileshworks.now@gmail.com). This app is completely closed source and any illegal means to procure the source code is actionable.\n\nThe name 'HealthWave' and the images used are not our property.\n\nⓒ All rights reserved, 2023");
+                alert.setMessage("This app was created purely for educational and research purposes and not intended for any other use. This app was built with ♥ in Android Studio, Flask, Firestore and OpenAI GPT 3.5 by Akilesh S (akileshworks.now@gmail.com). This app is completely closed source and any illegal means to procure the source code is actionable.\n\nThe name 'HealthWave' and the images used are not our property.\n\nⓒ All rights reserved, 2024");
                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
