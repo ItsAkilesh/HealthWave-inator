@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Baymax AI</string>
+    <string name="app_name">HealthWave</string>
     <string name="title_activity_chat">ChatActivity</string>
     <string name="title_chat">Chat</string>
     <string name="title_history">History</string>
