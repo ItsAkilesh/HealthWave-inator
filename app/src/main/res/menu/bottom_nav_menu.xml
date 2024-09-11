@@ -12,6 +12,12 @@
         android:title="@string/title_history" />
 
     <item
+        android:id="@+id/navigation_yoga"
+        android:icon="@drawable/baseline_directions_run_24"
+        android:title="@string/title_yoga" />
+
+
+    <item
         android:id="@+id/navigation_account"
         android:icon="@drawable/ic_account_black_24dp"
         android:title="@string/title_account" />
