@@ -9,21 +9,19 @@
         android:id="@+id/navigation_chat"
         android:name="com.baymax.ai.ui.chat.ChatFragment"
         android:label="@string/title_chat"
-        tools:layout="@layout/fragment_chat" >
-        <action
-            android:id="@+id/action_navigation_chat_self"
-            app:destination="@id/navigation_chat" />
-    </fragment>
+        tools:layout="@layout/fragment_chat" />
 
     <fragment
         android:id="@+id/navigation_history"
         android:name="com.baymax.ai.ui.history.HistoryFragment"
         android:label="@string/title_history"
-        tools:layout="@layout/fragment_history" >
-        <action
-            android:id="@+id/action_navigation_history_to_navigation_chat"
-            app:destination="@id/navigation_chat" />
-    </fragment>
+        tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/navigation_yoga"
+        android:name="com.baymax.ai.WebUIFragment"
+        android:label="Web UI"
+        tools:layout="@layout/web_ui_fragment" />
 
     <fragment
         android:id="@+id/navigation_account"

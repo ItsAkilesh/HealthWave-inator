@@ -96,7 +96,7 @@ public class ChatFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 docId = null;
                 NavHostFragment.findNavController(ChatFragment.this)
-                        .navigate(R.id.action_navigation_chat_self, bundle);
+                        .navigate(R.id.idRLContainer, bundle);
 
             }
         });

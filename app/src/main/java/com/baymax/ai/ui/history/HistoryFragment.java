@@ -46,7 +46,7 @@ public class HistoryFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("docId", docIdList.get(position));
                 NavHostFragment.findNavController(HistoryFragment.this)
-                        .navigate(R.id.action_navigation_history_to_navigation_chat, bundle);
+                        .navigate(R.id.action_historyFragment_to_chatFragment, bundle);
 
 
 

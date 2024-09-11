@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class WebUIFragment extends Fragment {
+public class  WebUIFragment extends Fragment {
 
     public WebUIFragment() {
         // Required empty public constructor
@@ -27,7 +27,7 @@ public class WebUIFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Placeholder link to Google
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com"));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://muhd-kifayath.github.io/YogaPoseDetection/"));
                 startActivity(browserIntent);
             }
         });

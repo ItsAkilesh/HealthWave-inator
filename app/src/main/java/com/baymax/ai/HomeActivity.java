@@ -28,11 +28,10 @@ public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding binding;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
-    public String displayName, displayEmail,dob;
+    public String displayName, displayEmail, dob;
     public Boolean gender;
     public Uri displayPhoto;
     public int age;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,29 +43,22 @@ public class HomeActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(Color.TRANSPARENT);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        //AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-         //       R.id.navigation_chat, R.id.navigation_history, R.id.navigation_account)
-           //     .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_chat);
-        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().requestProfile().build();
-        gsc = GoogleSignIn.getClient(HomeActivity.this,gso);
+        gsc = GoogleSignIn.getClient(HomeActivity.this, gso);
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(HomeActivity.this);
-        if(account!=null){
-            displayName= account.getDisplayName();
-            displayEmail= account.getEmail();
-            displayPhoto=account.getPhotoUrl();;
-            dob=account.getGrantedScopes().contains("https://www.googleapis.com/auth/user.birthday.read") ? account.getDisplayName() : null;
-            //Toast.makeText(this, dob, Toast.LENGTH_SHORT).show();
+        if (account != null) {
+            displayName = account.getDisplayName();
+            displayEmail = account.getEmail();
+            displayPhoto = account.getPhotoUrl();
+            dob = account.getGrantedScopes().contains("https://www.googleapis.com/auth/user.birthday.read") ? account.getDisplayName() : null;
             gender = account.getGrantedScopes().contains("https://www.googleapis.com/auth/user.gender.read") ? account.getGrantedScopes().contains("https://www.googleapis.com/auth/user.birthday.read") : null;
+        }
     }
 
-    }
     public static void setWindowFlag(Activity activity, final int bits, boolean on) {
         Window win = activity.getWindow();
         WindowManager.LayoutParams winParams = win.getAttributes();
@@ -77,6 +69,7 @@ public class HomeActivity extends AppCompatActivity {
         }
         win.setAttributes(winParams);
     }
+
     public void SignOut() {
         gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
